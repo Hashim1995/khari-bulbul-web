@@ -1,0 +1,19 @@
+workflow:
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "web"'
+      when: always
+    - when: never
+
+stages:         
+  - publish
+
+publish:   
+  stage: publish
+  script:
+    - cd library-web
+    - CI="" yarn install
+    - CI="" yarn build
+    - echo "Deploying application..."
+    - cp -r build/* /var/www/book_app/front
+    - chmod 777 /var/www/book_app/front --recursive
+    - echo "Application successfully deployed."

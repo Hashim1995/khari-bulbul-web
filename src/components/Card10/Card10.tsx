@@ -1,0 +1,66 @@
+import React, { FC, useState } from "react";
+import PostCardSaveAction from "components/PostCardSaveAction/PostCardSaveAction";
+import { PostDataType } from "data/types";
+import CategoryBadgeList from "components/CategoryBadgeList/CategoryBadgeList";
+import PostFeaturedMedia from "components/PostFeaturedMedia/PostFeaturedMedia";
+import PostCardMetaV2 from "components/PostCardMeta/PostCardMetaV2";
+import Link from "components/Link";
+
+
+const blog = {
+  id: "08561d29-d462-4bde-0cd6-08dc39dc721c",
+  name: "DOLMA NECE HAZIRLANIR",
+  description: "<p>KLEJQ LWJEL QJWE JQLJE QJ EQJ JQL<br><br></p><p>KLEJQ LWJEL QJWE JQLJE QJ EQJ JQL</p><p>KLEJQ LWJEL QJWE JQLJE QJ EQJ JQL</p><p>KLEJQ LWJEL QJWE JQLJE QJ EQJ JQL</p><p>KLEJQ LWJEL QJWE JQLJE QJ EQJ JQL</p><p>KLEJQ LWJEL QJWE JQLJE QJ EQJ JQLV</p><p>V</p><p>KLEJQ LWJEL QJWE JQLJE QJ EQJ JQL</p><p>KLEJQ LWJEL QJWE JQLJE QJ EQJ JQLV</p><p>KLEJQ LWJEL QJWE JQLJE QJ EQJ JQL</p><p>KLEJQ LWJEL QJWE JQLJE QJ EQJ JQL</p><p>KLEJQ LWJEL QJWE JQLJE QJ EQJ JQL</p><p>KLEJQ LWJEL QJWE JQLJE QJ EQJ JQL</p><p>KLEJQ LWJEL QJWE JQLJE QJ EQJ JQL</p><p>KLEJQ LWJEL QJWE JQLJE QJ EQJ JQL</p><p>KLEJQ LWJEL QJWE JQLJE QJ EQJ JQL</p><p>KLEJQ LWJEL QJWE JQLJE QJ EQJ JQL</p><p>KLEJQ LWJEL QJWE JQLJE QJ EQJ JQL</p><p>KLEJQ LWJEL QJWE JQLJE QJ EQJ JQL</p><p>KLEJQ LWJEL QJWE JQLJE QJ EQJ JQL</p>",
+  content: "DF EWIO PWIEROIWEROP I",
+  showOnFirstScreen: false,
+  userId: "f5e554c2-6a35-4a11-5abd-08dc2c76d71b",
+  isActive: false,
+  coverPhoto: {
+    id: "00f73200-3399-4a1b-1c7c-08dc39dc6b84",
+    mimeType: "image/jpeg",
+    createdDate: "0001-01-01T00:00:00",
+    fileSize: 46794,
+    name: "61I24wOsn8L._AC_UF1000,1000_QL80_.jpg",
+    fileUrl: "https://dev.optima.az:8290/backend/api/fileUpload/download/00f73200-3399-4a1b-1c7c-08dc39dc6b84"
+  },
+  createdDate: "01.03.2024"
+};
+export interface Card10Props {
+  className?: string;
+  post: PostDataType;
+}
+
+const Card10: FC<Card10Props> = ({ className = "h-full", post }) => {
+  const { href, categories } = post;
+  const [isHover, setIsHover] = useState(false);
+
+  return (
+    <div
+      className={`nc-Card10 relative flex flex-col ${className}`}
+      onMouseEnter={() => setIsHover(true)}
+      onMouseLeave={() => setIsHover(false)}
+    >
+      <Link href={href} className="absolute inset-0" />
+      <div className="block group rounded-3xl flex-shrink-0 relative w-full aspect-w-9 aspect-h-7 sm:aspect-h-9 overflow-hidden z-0">
+        <div>
+          <PostFeaturedMedia post={post} isHover={isHover} blog={blog}/>
+        </div>
+
+        <Link
+          href={href}
+          className="absolute inset-0 bg-neutral-900 bg-opacity-20 opacity-0 group-hover:opacity-100 transition-opacity"
+        ></Link>
+      </div>
+      <div className="absolute top-3 inset-x-3 flex justify-between items-start space-x-4 z-10">
+        <CategoryBadgeList categories={categories} />
+        <PostCardSaveAction hidenReadingTime />
+      </div>
+
+      <div className="space-y-2.5 mt-4">
+        <PostCardMetaV2 meta={post} />
+      </div>
+    </div>
+  );
+};
+
+export default Card10;

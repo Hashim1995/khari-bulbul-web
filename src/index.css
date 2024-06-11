@@ -1,0 +1,34 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* test */
+
+.h-125-percentage {
+  height: 125%;
+}
+
+.scale-20-percentage {
+  height: 120% !important;
+  width: 125% !important;
+}
+
+body {
+  position: relative;
+}
+
+body::before {
+  content: "";
+  background-image: url("./images/bg-website.webp");
+  /* background-size: cover; */
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+  opacity: 0.1;
+}
+
+.article-content-container * {
+  background-color: transparent !important;
+}
