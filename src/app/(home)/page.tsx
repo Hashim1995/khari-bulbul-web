@@ -41,7 +41,7 @@ import { useSelector } from "react-redux";
 import { selectWebsiteTitle } from "../../redux/core/core-slice";
 import { useReadLocalStorage } from "usehooks-ts";
 import { getLanguageId } from "utils/getLanguageId";
-import backgroundImage from "../../images/bg-website.webp";
+import mainImage from "../../images/main_image.jpg";
 
 //
 const MAGAZINE1_POSTS = DEMO_POSTS.filter((_, i) => i >= 8 && i < 16);
@@ -118,20 +118,18 @@ const PageHome = () => {
 
   return (
     <div className="nc-PageHome bg-image relative">
-      <div className="container relative">
-        <div id="gallery">
-          {!galleryloading ? (
-            <SectionLargeSlider
-              className="pt-10 pb-18 md:py-16 md:pb-20 lg:pb-28 lg:pt-20"
-              posts={DEMO_POSTS?.filter((_, i) => i < 3)}
-              gallery={gallery?.filter((_, i) => i < 6) || []}
-            />
-          ) : (
-            <div className=" flex justify-center  pt-10 pb-16 md:py-16 lg:pb-28 lg:pt-20">
-              <Loading size="large" />
-            </div>
-          )}
-        </div>
+      <div className="container relative pt-20">
+        <h2 className="text-2xl md:text-3xl lg:text-4xl font-semibold text-center">
+          Khari Bülbül Azərbaycan Mədəniyyət Evi
+        </h2>
+        <span className="mt-2 mb-10 md:mt-3 font-normal block text-base sm:text-xl text-neutral-500 dark:text-neutral-400 text-center">
+          Berlin, Almaniya
+        </span>
+        <img
+          src={mainImage}
+          className="rounded-3xl shadow-2xl h-125-percentagelg:max-w-3xl object-cover w-full h-full"
+          alt=""
+        />
 
         <div id="about-us" className="mt-20">
           {/* <SectionSliderNewCategories
@@ -144,9 +142,11 @@ const PageHome = () => {
           <div className="container py-16 lg:py-28 space-y-16 lg:space-y-28">
             <SectionHero
               rightImg={rightImg}
-              heading={`${websiteTitle?.data?.aboutUsHeader}`}
+              heading={`Layihəmiz Haqqında`}
               btnText=""
-              subHeading={websiteTitle?.data?.aboutUsContent}
+              subHeading={
+                "Khari Bülbül Azərbaycan Mədəniyyət Evi Berlində fəaliyyət göstərir və Almaniyada yaşayan azərbaycanlı icması üçün vacib mədəniyyət mərkəzidir. Bu mərkəz Novruz bayramı kimi müxtəlif tədbirlər təşkil edərək, azərbaycanlı mədəniyyətini və ənənələrini təşviq edir. Mərkəz həm də musiqi konsertləri, sənət sərgiləri və təhsil proqramları vasitəsilə Azərbaycan incəsənətini tanıdır​. Mədəniyyət evləri, icmaların mədəni irsini qoruyub saxlamaq və təşviq etmək üçün mühüm rol oynayır. Onlar müxtəlif mədəniyyətlər arasında qarşılıqlı anlaşma və hörmətin artırılmasına kömək edir."
+              }
             />
           </div>
         </div>
@@ -157,6 +157,8 @@ const PageHome = () => {
               className="py-16 lg:py-14"
               posts={MAGAZINE1_POSTS}
               blogs={postsData}
+              heading="Tədbirlər"
+              desc="Khari Bülbül Azərbaycan Mədəniyyət Evinin Keçirdiyi Tədbirlər"
             />
           </div>
         ) : (
@@ -170,6 +172,8 @@ const PageHome = () => {
               className="py-16 lg:py-14"
               posts={MAGAZINE1_POSTS}
               blogs={postsData}
+              heading="Xəbərlər"
+              desc="Khari Bülbül Azərbaycan Mədəniyyət Evinin Ən Son Xəbərləri"
             />
           </div>
         ) : (

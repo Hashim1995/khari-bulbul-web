@@ -2,10 +2,13 @@ import { FC, Fragment, useEffect, useState } from "react";
 import { Popover, Tab, Transition } from "app/headlessui";
 import { ChevronDownIcon } from "@heroicons/react/24/solid";
 import { GlobeAltIcon } from "@heroicons/react/24/outline";
-import { useTranslation } from "react-i18next"; 
-import { useDispatch, useSelector } from "react-redux"; 
-import { fetchWebsiteTitle, setCurrentLayoutLanguage } from "../../redux/core/core-slice"; 
-import { LayoutLanguage } from '../../models/common'
+import { useTranslation } from "react-i18next";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  fetchWebsiteTitle,
+  setCurrentLayoutLanguage,
+} from "../../redux/core/core-slice";
+import { LayoutLanguage } from "../../models/common";
 import { RootState } from "redux/store";
 
 export const headerLanguage = [
@@ -38,42 +41,48 @@ function classNames(...classes: any) {
 }
 
 const LangDropdown: FC<LangDropdownProps> = ({ panelClassName = "" }) => {
-  const { t, i18n } = useTranslation(); 
-  const dispatch = useDispatch(); 
-  const currentLayoutLanguage = useSelector((state: RootState) => state.core.currentLayoutLanguage);
-  const websiteTitle = useSelector((state: RootState) => state.core.websiteTitle);
- 
+  const { t, i18n } = useTranslation();
+  const dispatch = useDispatch();
+  const currentLayoutLanguage = useSelector(
+    (state: RootState) => state.core.currentLayoutLanguage
+  );
+  const websiteTitle = useSelector(
+    (state: RootState) => state.core.websiteTitle
+  );
+
   const [headerLanguageState, setHeaderLanguageState] = useState(
-    headerLanguage.map(lang => ({
+    headerLanguage.map((lang) => ({
       ...lang,
       active: lang.id === currentLayoutLanguage,
     }))
   );
-  
+
   const renderLang = (close: () => void) => {
     return (
       <div className="grid gap-8 lg:grid-cols-2">
         {headerLanguageState.map((item, index) => (
           <button
             key={index}
+            disabled={index !== 0}
             onClick={() => {
               close();
-              i18n.changeLanguage(String(item?.id)); 
-              dispatch(setCurrentLayoutLanguage(item?.id)); 
+              i18n.changeLanguage(String(item?.id));
+              dispatch(setCurrentLayoutLanguage(item?.id));
               // Update the headerLanguage array to set the active property
-              const updatedHeaderLanguage = headerLanguageState.map(lang => ({
+              const updatedHeaderLanguage = headerLanguageState.map((lang) => ({
                 ...lang,
                 active: lang.id === item.id,
               }));
               setHeaderLanguageState(updatedHeaderLanguage);
-             window.location.reload()
+              window.location.reload();
             }}
             className={`flex items-center p-2 -m-3 transition duration-150 ease-in-out rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus-visible:ring focus-visible:ring-orange-500 focus-visible:ring-opacity-50 ${
               item.active ? "bg-gray-100 dark:bg-gray-700" : "opacity-80"
             }`}
           >
             <div className="">
-              <p className="text-sm font-medium ">{t(item.name)}</p> {/* Translate name */}
+              <p className="text-sm font-medium ">{t(item.name)}</p>{" "}
+              {/* Translate name */}
               <p className="text-xs text-gray-500 dark:text-gray-400">
                 {t(item.description)} {/* Translate description */}
               </p>
@@ -88,17 +97,14 @@ const LangDropdown: FC<LangDropdownProps> = ({ panelClassName = "" }) => {
     // Fetch website title when language changes
     // @ts-ignore
     dispatch(fetchWebsiteTitle(currentLayoutLanguage));
-
-    
-    
   }, [dispatch, currentLayoutLanguage]);
 
   // Render function for currencies
   // ...
 
   return (
-    // ! hidden class is deleted 
-    <div className="LangDropdown  sm:block"> 
+    // ! hidden class is deleted
+    <div className="LangDropdown  sm:block">
       <Popover className="relative">
         {({ open, close }) => (
           <>
@@ -107,7 +113,9 @@ const LangDropdown: FC<LangDropdownProps> = ({ panelClassName = "" }) => {
                 ${open ? "" : "text-opacity-80"}
              group h-10 sm:h-12 px-3 py-1.5 inline-flex items-center text-sm text-gray-800 dark:text-neutral-200 font-medium hover:text-opacity-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75`}
             >
-              <span className="px-2">{headerLanguageState.find(item => item.active)?.name}</span> 
+              <span className="px-2">
+                {headerLanguageState.find((item) => item.active)?.name}
+              </span>
               <GlobeAltIcon className="w-[24px] h-[24px] opacity-80" />
               <ChevronDownIcon
                 className={`${open ? "-rotate-180" : "text-opacity-70"}

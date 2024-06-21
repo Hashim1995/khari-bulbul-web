@@ -10,6 +10,7 @@ import { selectWebsiteTitle } from "../../redux/core/core-slice";
 export interface SectionMagazine1Props {
   posts: PostDataType[];
   heading?: string;
+  desc?: string;
   className?: string;
   blogs?: any[];
 }
@@ -19,21 +20,18 @@ const SectionMagazine1: FC<SectionMagazine1Props> = ({
   blogs,
   heading,
   className = "",
+  desc,
 }) => {
   const { t } = useTranslation();
 
   const websiteTitle = useSelector(selectWebsiteTitle);
   const defaultHeading = () => {
-    if (heading) {
-      return heading;
-    } else {
-      return websiteTitle?.data?.articleHeader;
-    }
+    return heading;
   };
 
   return (
     <div className={`nc-SectionMagazine1 ${className}`}>
-      <HeaderFilter heading={`${defaultHeading()}`} />
+      <HeaderFilter heading={`${defaultHeading()}`} desc={desc} />
       <div className="grid justify-center items-center grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8">
         {blogs && blogs?.length > 0 ? (
           <>
