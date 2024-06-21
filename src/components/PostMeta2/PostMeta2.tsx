@@ -2,7 +2,7 @@ import React, { FC } from "react";
 import Avatar from "components/Avatar/Avatar";
 import { IBlogsItem, PostDataType } from "data/types";
 import { DEMO_POSTS } from "data/posts";
-import AAAPP from '../../images/AAA-PP.jpg'
+import AAAPP from "../../images/AAA-PP.jpg";
 import Link from "components/Link";
 
 const metaDemo: PostMeta2Props["meta"] = DEMO_POSTS[0];
@@ -40,13 +40,13 @@ const PostMeta2: FC<PostMeta2Props> = ({
               : "h-10 w-10 sm:h-11 sm:w-11 text-xl"
           }
           imgUrl={AAAPP}
-          userName={'Aysel Aydin Alizada'}
+          userName={"Khari Bulbul"}
         />
       </Link>
       <div className="ml-3">
         <div className="flex items-center">
-          <Link href={'/author'} className="block font-semibold">
-            {'Aysel Aydin Alizada'}
+          <Link href={"/author"} className="block font-semibold">
+            {"Khari Bulbul"}
           </Link>
 
           {/* {!hiddenCategories && (
@@ -65,7 +65,9 @@ const PostMeta2: FC<PostMeta2Props> = ({
           )} */}
         </div>
         <div className="text-xs mt-[6px]">
-          <span className="text-neutral-700 dark:text-neutral-300">{post?.createdDate}</span>
+          <span className="text-neutral-700 dark:text-neutral-300">
+            {post?.createdDate}
+          </span>
           {/* <span className="mx-2 font-semibold">·</span> */}
           {/* <span className="text-neutral-700 dark:text-neutral-300">
             {readingTime} min read

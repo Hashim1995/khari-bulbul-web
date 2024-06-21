@@ -32,8 +32,8 @@ import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { selectWebsiteTitle } from "../../redux/core/core-slice";
 
-import LogoAAA from "../../images/LogoAAA.png";
-import AAAPP from '../../images/AAA-PP.jpg'
+import logo from "../../images/logo.png.png";
+import AAAPP from "../../images/AAA-PP.jpg";
 
 //@ts-ignore
 import { Helmet } from "react-helmet";
@@ -75,7 +75,7 @@ const PageAuthor = () => {
   const TABS = [t("articles")];
   const [tabActive, setTabActive] = useState<string>(TABS[0]);
 
-  const currentLayoutLanguage = localStorage.getItem('currentLayoutLanguage'); 
+  const currentLayoutLanguage = localStorage.getItem("currentLayoutLanguage");
   const [blogs, setBlogs] = useState<IBlogsItem[]>([]);
   const [totalNumberOfBlogs, setTotalNumberOfBlogs] = useState<number>(0);
   const [blogsLoading, setBlogsLoading] = useState<boolean>(false);
@@ -86,9 +86,12 @@ const PageAuthor = () => {
   const getBlogs = async (page: number) => {
     setBlogsLoading(true);
     try {
-      const res: IGetBlogsResponse = await api.get(`/Post/get-all-active?language=${getLanguageId(currentLayoutLanguage)}`, {
-        params: { offset: page },
-      });
+      const res: IGetBlogsResponse = await api.get(
+        `/Post/get-all-active?language=${getLanguageId(currentLayoutLanguage)}`,
+        {
+          params: { offset: page },
+        }
+      );
       if (res) {
         setTotalNumberOfBlogs(res?.data?.data?.totalDataCount);
         setBlogs(res?.data?.data?.data);
@@ -97,7 +100,7 @@ const PageAuthor = () => {
       console.log(e);
     } finally {
       setBlogsLoading(false);
-      window.scrollTo({ top: 0 , behavior: 'smooth'});
+      window.scrollTo({ top: 0, behavior: "smooth" });
     }
   };
 
@@ -126,16 +129,19 @@ const PageAuthor = () => {
     <div className={`nc-PageAuthor bg-image`}>
       {/* HEADER */}
       <Helmet>
-        <title>{"Aysel Aydin Alizada"}</title>
+        <title>{"Khari Bulbul"}</title>
         <meta name="description" content={websiteTitle?.data?.bioContent} />
         <meta name="robots" content="noindex, follow" />
-        <meta property="og:title" content={"Aysel Aydin Alizada"} />
-        <meta property="og:description" content={websiteTitle?.data?.bioContent} />
+        <meta property="og:title" content={"Khari Bulbul"} />
+        <meta
+          property="og:description"
+          content={websiteTitle?.data?.bioContent}
+        />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dev.optima.az:8305/author" />
         <meta
           property="og:image"
-          content={`https://dev.optima.az:8305/${LogoAAA}`}
+          content={`https://dev.optima.az:8305/${logo}`}
         />
       </Helmet>
       <div className="w-full">
@@ -153,14 +159,7 @@ const PageAuthor = () => {
           <div className="relative bg-white dark:bg-neutral-900 dark:border dark:border-neutral-700 p-5 lg:p-8 rounded-3xl md:rounded-[40px] shadow-xl flex flex-col md:flex-row">
             <div className="w-32 lg:w-40 flex-shrink-0 mt-12 sm:mt-0">
               <div className="wil-avatar relative flex-shrink-0 inline-flex items-center justify-center overflow-hidden text-neutral-100 uppercase font-semibold rounded-full w-20 h-20 text-xl lg:text-2xl lg:w-36 lg:h-36 ring-4 ring-white dark:ring-0 shadow-2xl z-0">
-                <Image
-                  alt="Avatar"
-                  src={
-                  AAAPP
-                  }
-                  fill
-                  className="object-cover"
-                />
+                <Image alt="Avatar" src={AAAPP} fill className="object-cover" />
               </div>
             </div>
 
@@ -168,22 +167,22 @@ const PageAuthor = () => {
             <div className="pt-5 md:pt-1 lg:ml-6 xl:ml-12 flex-grow">
               <div className="max-w-screen-sm space-y-3.5 ">
                 <h2 className="inline-flex items-center text-2xl sm:text-3xl lg:text-4xl font-semibold">
-                  <span>Aysel Aydin Alizada</span>
+                  <span>Khari Bulbul</span>
                   {/* <VerifyIcon
                     className="ml-2"
                     iconClass="w-6 h-6 sm:w-7 sm:h-7 xl:w-8 xl:h-8"
                   /> */}
                 </h2>
                 <span className="block text-sm text-neutral-500 dark:text-neutral-400">
-              {websiteTitle?.data?.bioContent}
+                  {websiteTitle?.data?.bioContent}
                 </span>
                 {/* <a
-                  href=" https://Aysel Aydin Alizada05.github.io/"
+                  href=" https://Khari Bulbul05.github.io/"
                   className="flex items-center text-xs font-medium space-x-2.5 cursor-pointer text-neutral-500 dark:text-neutral-400 truncate"
                 >
                   <GlobeAltIcon className="flex-shrink-0 w-4 h-4" />
                   <span className="text-neutral-700 dark:text-neutral-300 truncate">
-                    https://Aysel Aydin Alizada05.github.io/
+                    https://Khari Bulbul05.github.io/
                   </span>
                 </a> */}
                 <SocialsList itemClass="block w-7 h-7" />
@@ -220,10 +219,7 @@ const PageAuthor = () => {
           <div className="flex flex-col sm:items-center sm:justify-between sm:flex-row">
             <Nav className="sm:space-x-2">
               {TABS.map((item, index) => (
-                <NavItem
-                  key={index}
-                  isActive={true}
-                >
+                <NavItem key={index} isActive={true}>
                   {item}
                 </NavItem>
               ))}
@@ -237,23 +233,24 @@ const PageAuthor = () => {
           {/* LOOP ITEMS */}
 
           {!blogsLoading ? (
-  <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-8 mt-8 lg:mt-10">
-    {blogs?.length > 0 ? (
-      blogs?.map((blog) => (
-        <Card11 key={blog?.id} post={POST_TEMP} blog={blog} />
-      ))
-    ) : (
-      <div className="col-span-full flex justify-center items-center">
-        <span className="text-2xl text-center text-gray-500">{t('nothingFound')}</span>
-      </div>
-    )}
-  </div>
-) : (
-  <div className="flex justify-center pt-10 pb-16 md:py-16 lg:pb-28 lg:pt-20">
-    <Loading size="large" />
-  </div>
-)}
-
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-8 mt-8 lg:mt-10">
+              {blogs?.length > 0 ? (
+                blogs?.map((blog) => (
+                  <Card11 key={blog?.id} post={POST_TEMP} blog={blog} />
+                ))
+              ) : (
+                <div className="col-span-full flex justify-center items-center">
+                  <span className="text-2xl text-center text-gray-500">
+                    {t("nothingFound")}
+                  </span>
+                </div>
+              )}
+            </div>
+          ) : (
+            <div className="flex justify-center pt-10 pb-16 md:py-16 lg:pb-28 lg:pt-20">
+              <Loading size="large" />
+            </div>
+          )}
 
           {/* PAGINATION */}
           <div className="flex flex-col mt-12 lg:mt-16 space-y-5 sm:space-y-0 sm:space-x-3 sm:flex-row sm:justify-between sm:items-center">

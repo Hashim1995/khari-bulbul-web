@@ -1,7 +1,7 @@
 import React, { FC, useEffect } from "react";
 import Avatar from "components/Avatar/Avatar";
 import { PostDataType } from "data/types";
-import AAAPP from '../../images/AAA-PP.jpg'
+import AAAPP from "../../images/AAA-PP.jpg";
 import Link from "components/Link";
 
 export interface PostCardMetaV2Props {
@@ -21,8 +21,8 @@ const PostCardMetaV2: FC<PostCardMetaV2Props> = ({
 }) => {
   const { date, author, title } = meta;
   useEffect(() => {
-    author.displayName = 'Aysel Aydin Alizada'
-  })
+    author.displayName = "Khari Bulbul";
+  });
   return (
     <div
       className={`nc-PostCardMetaV2 inline-flex items-center flex-wrap text-neutral-800 dark:text-neutral-200 ${className}`}

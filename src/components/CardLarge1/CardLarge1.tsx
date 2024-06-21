@@ -30,7 +30,7 @@ const CardLarge1: FC<CardLarge1Props> = ({
     id: 1,
     firstName: "Alric",
     lastName: "Truelock",
-    displayName: "Aysel Aydin Alizada",
+    displayName: "Khari Bulbul",
     email: "atruelock0@skype.com",
     gender: "Bigender",
     avatar: "https://robohash.org/doloremaliquidquia.png?size=150x150&set=set1",

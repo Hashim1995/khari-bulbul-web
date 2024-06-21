@@ -17,7 +17,7 @@ import { Alert } from "components/Alert/Alert";
 import { toast } from "react-toastify";
 import { toastOptions } from "utils/global-variables";
 import { useTranslation } from "react-i18next";
-import LogoAAA from "../../../images/LogoAAA.png";
+import logo from "../../../images/logo.png.png";
 //@ts-ignore
 import { Helmet } from "react-helmet";
 
@@ -103,7 +103,7 @@ const PageContact = () => {
     //   desc: dictionary?.az?.addressDesc,
     // },
     {
-      title: "💌 " + t('email'),
+      title: "💌 " + t("email"),
       desc: dictionary?.az?.emailDesc,
     },
     // {
@@ -136,173 +136,177 @@ const PageContact = () => {
   };
   return (
     <div className="bg-image">
-       <Layout>
-      <Helmet>
-        <title>{t("contactUs")}</title>
-        <meta name="description" content={t("dropUsMessage")} />
-        <meta name="robots" content="noindex, follow" />
-        <meta property="og:title" content={t("contactUs")} />
-        <meta property="og:description" content={t("dropUsMessage")} />
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://dev.optima.az:8305/contact" />
-        <meta
-          property="og:image"
-          content={`https://dev.optima.az:8305/${LogoAAA}`}
-        />
-        <meta
-          name="keywords"
-          content="contact us, get in touch, reach out, contact details, phone number, email address, location, city, customer service, support team"
-        />
-        <meta
-          name="keywords"
-          content="bizimlə əlaqə, əlaqə saxlayın, bizə müraciət edin, əlaqə məlumatları, telefon nömrəsi, e-poçt ünvanı, yer, şəhər, iş adı, müştəri dəstəyi, köməkçi mərkəzi, dəstək komandası"
-        />
-      </Helmet>
-      <header className="text-center max-w-2xl mx-auto - mb-14 sm:mb-16 lg:mb-28 ">
-        <Heading2>{t("contactUs")}</Heading2>
-        <span className="block text-sm mt-2 text-neutral-700 sm:text-base dark:text-neutral-200">
-          {t("dropUsMessage")}
-        </span>
-      </header>
+      <Layout>
+        <Helmet>
+          <title>{t("contactUs")}</title>
+          <meta name="description" content={t("dropUsMessage")} />
+          <meta name="robots" content="noindex, follow" />
+          <meta property="og:title" content={t("contactUs")} />
+          <meta property="og:description" content={t("dropUsMessage")} />
+          <meta property="og:type" content="website" />
+          <meta
+            property="og:url"
+            content="https://dev.optima.az:8305/contact"
+          />
+          <meta
+            property="og:image"
+            content={`https://dev.optima.az:8305/${logo}`}
+          />
+          <meta
+            name="keywords"
+            content="contact us, get in touch, reach out, contact details, phone number, email address, location, city, customer service, support team"
+          />
+          <meta
+            name="keywords"
+            content="bizimlə əlaqə, əlaqə saxlayın, bizə müraciət edin, əlaqə məlumatları, telefon nömrəsi, e-poçt ünvanı, yer, şəhər, iş adı, müştəri dəstəyi, köməkçi mərkəzi, dəstək komandası"
+          />
+        </Helmet>
+        <header className="text-center max-w-2xl mx-auto - mb-14 sm:mb-16 lg:mb-28 ">
+          <Heading2>{t("contactUs")}</Heading2>
+          <span className="block text-sm mt-2 text-neutral-700 sm:text-base dark:text-neutral-200">
+            {t("dropUsMessage")}
+          </span>
+        </header>
 
-      <div className="grid gap-8 lg:grid-cols-2">
-        <div className="max-w-sm space-y-6">
-          {info.map((item, index) => (
-            <div key={index}>
+        <div className="grid gap-8 lg:grid-cols-2">
+          <div className="max-w-sm space-y-6">
+            {info.map((item, index) => (
+              <div key={index}>
+                <h3 className="uppercase font-semibold text-sm dark:text-neutral-200 tracking-wider">
+                  {item.title}
+                </h3>
+                <span className="block mt-2 text-neutral-500 dark:text-neutral-400">
+                  {item.desc}
+                </span>
+              </div>
+            ))}
+            <div>
               <h3 className="uppercase font-semibold text-sm dark:text-neutral-200 tracking-wider">
-                {item.title}
+                🌏 {t("socials")}
               </h3>
-              <span className="block mt-2 text-neutral-500 dark:text-neutral-400">
-                {item.desc}
-              </span>
+              <SocialsList className="mt-2" socials={socials} />
             </div>
-          ))}
+          </div>
+          <div className="border border-neutral-100 dark:border-neutral-700 lg:hidden"></div>
           <div>
-            <h3 className="uppercase font-semibold text-sm dark:text-neutral-200 tracking-wider">
-              🌏 {t("socials")}
-            </h3>
-            <SocialsList className="mt-2" socials={socials} />
+            <form
+              noValidate
+              className="grid grid-cols-1 gap-6"
+              onSubmit={handleSubmit(onSubmit)}
+            >
+              <Controller
+                control={control}
+                name="fullName"
+                rules={{
+                  required: {
+                    value: true,
+                    message: formErrorMessages?.az?.fullName,
+                  },
+                }}
+                render={({ field: { onChange, value } }: any) => (
+                  <label className="block">
+                    <Label>{t("fullName")}</Label>
+                    <Input
+                      placeholder={t("fullNamePlaceholder")}
+                      type="text"
+                      className={`mt-2 ${
+                        errors?.fullName ? "border-red-500" : ""
+                      }`}
+                      onChange={onChange}
+                      value={value}
+                    />
+                  </label>
+                )}
+              />
+              {errors?.fullName && (
+                <p className="text-red-500 text-md  mt-[-3%]">
+                  {errors?.fullName.message}
+                </p>
+              )}
+              <Controller
+                control={control}
+                name="email"
+                rules={{
+                  required: {
+                    value: true,
+                    message: t("email"),
+                  },
+                  pattern: {
+                    value: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/,
+                    message: t("invalidEmailError"),
+                  },
+                }}
+                render={({ field: { onChange, value } }: any) => (
+                  <label className="block">
+                    <Label>{t("emailAddress")}</Label>
+                    <Input
+                      type="email"
+                      placeholder={t("emailAddressPlaceholder")}
+                      className={`mt-2 ${
+                        errors?.email ? "border-red-500" : ""
+                      }`}
+                      onChange={onChange}
+                      value={value}
+                    />
+                  </label>
+                )}
+              />
+              {errors?.email && (
+                <p className="text-red-500 text-md  mt-[-3%]">
+                  {errors?.email.message}
+                </p>
+              )}
+              <Controller
+                control={control}
+                name="message"
+                rules={{
+                  maxLength: {
+                    value: 300,
+                    message: t("invalidMessageError"),
+                  },
+
+                  required: {
+                    value: true,
+                    message: t("message"),
+                  },
+                }}
+                render={({ field: { onChange, value } }: any) => (
+                  <label className="block">
+                    <Label>{t("message")}</Label>
+                    <Textarea
+                      className={`mt-2 ${
+                        errors?.message ? "border-red-500" : ""
+                      }`}
+                      rows={6}
+                      onChange={onChange}
+                      value={value}
+                    />
+                  </label>
+                )}
+              />
+
+              {errors?.message && (
+                <p className="text-red-500 text-md  mt-[-3%]">
+                  {errors?.message?.message}
+                </p>
+              )}
+              <ButtonPrimary
+                type="submit"
+                loading={isLoading}
+                disabled={isLoading}
+              >
+                {t("submitBtn")}
+              </ButtonPrimary>
+            </form>
           </div>
         </div>
-        <div className="border border-neutral-100 dark:border-neutral-700 lg:hidden"></div>
-        <div>
-          <form
-            noValidate
-            className="grid grid-cols-1 gap-6"
-            onSubmit={handleSubmit(onSubmit)}
-          >
-            <Controller
-              control={control}
-              name="fullName"
-              rules={{
-                required: {
-                  value: true,
-                  message: formErrorMessages?.az?.fullName,
-                },
-              }}
-              render={({ field: { onChange, value } }: any) => (
-                <label className="block">
-                  <Label>{t("fullName")}</Label>
-                  <Input
-                    placeholder={t("fullNamePlaceholder")}
-                    type="text"
-                    className={`mt-2 ${
-                      errors?.fullName ? "border-red-500" : ""
-                    }`}
-                    onChange={onChange}
-                    value={value}
-                  />
-                </label>
-              )}
-            />
-            {errors?.fullName && (
-              <p className="text-red-500 text-md  mt-[-3%]">
-                {errors?.fullName.message}
-              </p>
-            )}
-            <Controller
-              control={control}
-              name="email"
-              rules={{
-                required: {
-                  value: true,
-                  message: t("email"),
-                },
-                pattern: {
-                  value: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/,
-                  message: t("invalidEmailError"),
-                },
-              }}
-              render={({ field: { onChange, value } }: any) => (
-                <label className="block">
-                  <Label>{t("emailAddress")}</Label>
-                  <Input
-                    type="email"
-                    placeholder={t("emailAddressPlaceholder")}
-                    className={`mt-2 ${errors?.email ? "border-red-500" : ""}`}
-                    onChange={onChange}
-                    value={value}
-                  />
-                </label>
-              )}
-            />
-            {errors?.email && (
-              <p className="text-red-500 text-md  mt-[-3%]">
-                {errors?.email.message}
-              </p>
-            )}
-            <Controller
-              control={control}
-              name="message"
-              rules={{
-                maxLength: {
-                  value: 300,
-                  message: t("invalidMessageError"),
-                },
-
-                required: {
-                  value: true,
-                  message: t("message"),
-                },
-              }}
-              render={({ field: { onChange, value } }: any) => (
-                <label className="block">
-                  <Label>{t("message")}</Label>
-                  <Textarea
-                    className={`mt-2 ${
-                      errors?.message ? "border-red-500" : ""
-                    }`}
-                    rows={6}
-                    onChange={onChange}
-                    value={value}
-                  />
-                </label>
-              )}
-            />
-
-            {errors?.message && (
-              <p className="text-red-500 text-md  mt-[-3%]">
-                {errors?.message?.message}
-              </p>
-            )}
-            <ButtonPrimary
-              type="submit"
-              loading={isLoading}
-              disabled={isLoading}
-            >
-              {t("submitBtn")}
-            </ButtonPrimary>
-          </form>
-        </div>
-      </div>
-      {showSuccessAlert && (
-        <Alert type="success" containerClassName="my-4">
-          {t("messageSentSuccess")}
-        </Alert>
-      )}
-    </Layout>
+        {showSuccessAlert && (
+          <Alert type="success" containerClassName="my-4">
+            {t("messageSentSuccess")}
+          </Alert>
+        )}
+      </Layout>
     </div>
-   
   );
 };
 

@@ -2,7 +2,7 @@ import React, { FC } from "react";
 import { PostAuthorType } from "data/types";
 import Avatar from "components/Avatar/Avatar";
 import Link from "components/Link";
-import AAAPP from '../../images/AAA-PP.jpg'
+import AAAPP from "../../images/AAA-PP.jpg";
 
 export interface CardAuthorProps {
   className?: string;
@@ -10,7 +10,7 @@ export interface CardAuthorProps {
 }
 
 const CardAuthor: FC<CardAuthorProps> = ({ className = "", author }) => {
-  const { displayName = "Aysel Aydin Alizada", href = "/", avatar, jobName } = author;
+  const { displayName = "Khari Bulbul", href = "/", avatar, jobName } = author;
   return (
     <Link
       href={href}
@@ -21,7 +21,7 @@ const CardAuthor: FC<CardAuthorProps> = ({ className = "", author }) => {
         containerClassName="flex-shrink-0 mr-4"
         radius="rounded-full"
         imgUrl={AAAPP}
-        userName={'Aysel Aydin Alizada'}
+        userName={"Khari Bulbul"}
       />
       <div>
         <h2

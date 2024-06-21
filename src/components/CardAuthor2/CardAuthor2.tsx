@@ -2,7 +2,7 @@ import React, { FC, useEffect } from "react";
 import { PostDataType } from "data/types";
 import Avatar from "components/Avatar/Avatar";
 import Link from "components/Link";
-import AAAPP from '../../images/AAA-PP.jpg'
+import AAAPP from "../../images/AAA-PP.jpg";
 import dayjs from "dayjs";
 
 export interface CardAuthor2Props
@@ -18,9 +18,8 @@ const CardAuthor2: FC<CardAuthor2Props> = ({
   date,
   hoverReadingTime = true,
 }) => {
-  const { displayName = 'Aysel Aydin Alizada', href = "/", avatar } = author;
- 
-  
+  const { displayName = "Khari Bulbul", href = "/", avatar } = author;
+
   return (
     <Link
       href={href}
@@ -42,7 +41,6 @@ const CardAuthor2: FC<CardAuthor2Props> = ({
         <span
           className={`flex items-center mt-1 text-xs text-neutral-500 dark:text-neutral-400`}
         >
-      
           <span>{date}</span>
           {/* {readingTime && (
             <>

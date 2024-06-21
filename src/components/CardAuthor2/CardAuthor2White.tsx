@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import Avatar from "components/Avatar/Avatar";
 import { CardAuthor2Props } from "./CardAuthor2";
-import AAAPP from '../../images/AAA-PP.jpg'
+import AAAPP from "../../images/AAA-PP.jpg";
 import Link from "components/Link";
 
 export interface CardAuthor2WhiteProps extends CardAuthor2Props {}
@@ -12,7 +12,7 @@ const CardAuthor2White: FC<CardAuthor2WhiteProps> = ({
   readingTime,
   date,
 }) => {
-  const { displayName = 'Aysel Aydin Alizada', href = "/", avatar } = author;
+  const { displayName = "Khari Bulbul", href = "/", avatar } = author;
   return (
     <Link
       href={href}
