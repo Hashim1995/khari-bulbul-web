@@ -1,6 +1,6 @@
 import React, { FC, useState } from "react";
 import ButtonCircle from "components/Button/ButtonCircle";
-import rightImg from "images/SVG-subcribe2.png";
+import rightImg from "images/Frame8.svg";
 import Badge from "components/Badge/Badge";
 import Input from "components/Input/Input";
 import Image from "components/Image";
@@ -54,10 +54,9 @@ const SectionSubscribe2: FC<SectionSubscribe2Props> = ({ className = "" }) => {
       setIsLoading(false);
     }
   };
+  
   return (
-    <div
-      className={`nc-SectionSubscribe2 relative flex flex-col lg:flex-row items-center ${className}`}
-    >
+    <div className={`nc-SectionSubscribe2 relative flex flex-col lg:flex-row items-center ${className}`}>
       <div className="flex-shrink-0 mb-14 lg:mb-0 lg:mr-10 lg:w-2/5">
         <h2 className="font-semibold text-4xl">
           {websiteTitle?.data?.newsLetterHeader}
@@ -65,20 +64,6 @@ const SectionSubscribe2: FC<SectionSubscribe2Props> = ({ className = "" }) => {
         <span className="block mt-6 text-neutral-500 dark:text-neutral-400">
           {websiteTitle?.data?.newsLetterContent}
         </span>
-        {/* <ul className="space-y-5 mt-10">
-          <li className="flex items-center space-x-4">
-            <Badge name="01" />
-            <span className="font-medium text-neutral-700 dark:text-neutral-300">
-              Get more discount
-            </span>
-          </li>
-          <li className="flex items-center space-x-4">
-            <Badge color="red" name="02" />
-            <span className="font-medium text-neutral-700 dark:text-neutral-300">
-              Get premium magazines
-            </span>
-          </li>
-        </ul> */}
         <form
           noValidate
           className="mt-8 relative max-w-sm"
