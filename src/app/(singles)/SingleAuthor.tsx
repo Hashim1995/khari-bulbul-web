@@ -2,7 +2,7 @@ import Avatar from "components/Avatar/Avatar";
 import { DEMO_AUTHORS } from "data/authors";
 import { PostAuthorType } from "data/types";
 import Link from "components/Link";
-import AAAPP from "../../images/AAA-PP.jpg";
+import AAAPP from "../../images/AAA-PP.png";
 import React, { FC } from "react";
 
 export interface SingleAuthorProps {
@@ -15,7 +15,7 @@ const SingleAuthor: FC<SingleAuthorProps> = ({ author = DEMO_AUTHORS[1] }) => {
       <Link href={author.href}>
         <Avatar
           imgUrl={AAAPP}
-          userName={"Khari Bulbul"}
+          userName={"Khari Bülbül"}
           sizeClass="h-12 w-12 text-lg sm:text-xl sm:h-24 sm:w-24"
         />
       </Link>

@@ -57,6 +57,7 @@ const PageHome = () => {
   const [homePageData, setHomePageData] = useState<IHomePageDataResponse>();
   const [loadingHomePage, setLoadingHomePage] = useState<boolean>();
   const [booksData, setBooksData] = useState<IBooksItem[]>([]);
+  const [eventsData, setEventsData] = useState<IBlogsItem[]>([]);
   const [postsData, setPostsData] = useState<IBlogsItem[]>([]);
 
   const getGallery = async () => {
@@ -91,11 +92,27 @@ const PageHome = () => {
     }
   };
 
+  const getEventsData = async () => {
+    setLoadingHomePage(true);
+    try {
+      const res: any = await api.get(
+        `/Post/GetAllEvents`
+      );
+      if (res.data?.isSuccess) {
+        setEventsData(res?.data?.data?.data);
+      }
+    } catch (e) {
+      console.log(e);
+    } finally {
+      setLoadingHomePage(false);
+    }
+  };
+
   const getHomePage = async () => {
     setLoadingHomePage(true);
     try {
       const res: any = await api.get(
-        `/Post/get-all-active?language=${getLanguageId(currentLayoutLanguage)}`
+        `/Post/GetAllBlogs`
       );
 
       if (res.data?.isSuccess) {
@@ -111,9 +128,10 @@ const PageHome = () => {
   };
 
   useEffect(() => {
-    getGallery();
+    // getGallery();
     getHomePage();
-    getBooksData();
+    getEventsData();
+    // getBooksData();
   }, []);
 
   return (
@@ -156,7 +174,7 @@ const PageHome = () => {
             <SectionMagazine1
               className="py-16 lg:py-14"
               posts={MAGAZINE1_POSTS}
-              blogs={postsData}
+              blogs={eventsData}
               heading="Tədbirlər"
               desc="Khari Bülbül Azərbaycan Mədəniyyət Evinin Keçirdiyi Tədbirlər"
             />

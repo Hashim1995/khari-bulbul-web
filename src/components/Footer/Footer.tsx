@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Logo from "components/Logo/Logo";
 import SocialsList1 from "components/SocialsList1/SocialsList1";
 import { CustomLink } from "data/types";
+import { useSelector } from "react-redux";
+import { RootState } from "redux/store";
 
 export interface WidgetFooterMenu {
   id: string;
@@ -80,6 +82,11 @@ const Footer: React.FC = () => {
     );
   };
 
+
+  const contact = useSelector((state: RootState) => state.setting);
+  const userEmail = contact?.data?.data?.email;
+
+
   return (
     <div className="nc-Footer relative py-16 lg:py-28 border-t border-neutral-200 dark:border-neutral-700 bg-image">
       <div className="container grid grid-cols-2 gap-y-10 gap-x-5 sm:gap-x-8 md:grid-cols-4 lg:grid-cols-5 lg:gap-x-10 ">
@@ -92,10 +99,10 @@ const Footer: React.FC = () => {
           </div> */}
         </div>
         <div>
-          <div className="mb-5">
+          <div className="mb-5 text-gray-500">
             Katharina-Heinroth-Ufer küç. 1 10787 Berlin
           </div>
-          <div>info@kharibulbul.de</div>
+          <div className=" text-gray-500">{userEmail}</div>
         </div>
         <SocialsList1 className="flex items-center justify-center space-x-3 lg:space-x-0 lg:flex-col lg:space-y-2.5 lg:items-start" />
       </div>

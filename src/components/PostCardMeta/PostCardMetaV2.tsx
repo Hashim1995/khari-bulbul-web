@@ -1,7 +1,7 @@
 import React, { FC, useEffect } from "react";
 import Avatar from "components/Avatar/Avatar";
 import { PostDataType } from "data/types";
-import AAAPP from "../../images/AAA-PP.jpg";
+import AAAPP from "../../images/AAA-PP.png";
 import Link from "components/Link";
 
 export interface PostCardMetaV2Props {
@@ -21,7 +21,7 @@ const PostCardMetaV2: FC<PostCardMetaV2Props> = ({
 }) => {
   const { date, author, title } = meta;
   useEffect(() => {
-    author.displayName = "Khari Bulbul";
+    author.displayName = "Khari Bülbül";
   });
   return (
     <div

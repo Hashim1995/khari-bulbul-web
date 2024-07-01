@@ -2,7 +2,7 @@ import React, { FC } from "react";
 import { PostAuthorType } from "data/types";
 import { ArrowRightIcon } from "@heroicons/react/24/outline";
 import Avatar from "components/Avatar/Avatar";
-import AAAPP from '../../images/AAA-PP.jpg'
+import AAAPP from '../../images/AAA-PP.png'
 import Link from "components/Link";
 
 export interface CardAuthorBoxProps {

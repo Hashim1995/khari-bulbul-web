@@ -53,7 +53,7 @@ const HeaderFilter: FC<HeaderFilterProps> = ({
             </NavItem>
           ))}
         </Nav>
-        {/* <Button
+        <Button
           className="md:!flex"
           pattern="white"
           sizeClass="px-6 py-3"
@@ -61,7 +61,7 @@ const HeaderFilter: FC<HeaderFilterProps> = ({
         >
           <span>{t("viewAll")}</span>
           <ArrowRightIcon className="w-6 h-6 ml-3" />
-        </Button> */}
+        </Button>
       </div>
     </div>
   );

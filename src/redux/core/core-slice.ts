@@ -6,7 +6,7 @@ import api from 'utils/axios';
 export const fetchWebsiteTitle = createAsyncThunk(
   'core/fetchWebsiteTitle',
   async (language: LayoutLanguage) => {
-    const response = await api.get(`/websiteTitle?language=${language === 'en' ? 'eng' : language}`);
+    const response = await api.get(`/websiteTitle`);
     return response.data;
   }
 );
