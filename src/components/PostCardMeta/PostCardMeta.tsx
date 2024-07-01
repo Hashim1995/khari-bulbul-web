@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import Avatar from "components/Avatar/Avatar";
 import { IBlogsItem, PostDataType } from "data/types";
-import AAAPP from "../../images/AAA-PP.jpg";
+import AAAPP from "../../images/AAA-PP.png";
 import Link from "components/Link";
 
 export interface PostCardMetaProps {
@@ -31,11 +31,11 @@ const PostCardMeta: FC<PostCardMetaProps> = ({
             radius="rounded-full"
             sizeClass={avatarSize}
             imgUrl={AAAPP}
-            userName={"Khari Bulbul"}
+            userName={"Khari Bülbül"}
           />
         )}
         <span className="block text-neutral-700 hover:text-black dark:text-neutral-300 dark:hover:text-white font-medium">
-          {"Khari Bulbul"}
+          {"Khari Bülbül"}
         </span>
       </Link>
       <>

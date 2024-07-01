@@ -72,7 +72,7 @@ const MainNav2: FC<MainNav2Props> = ({ className = "" }) => {
 
           <div className="flex-1 flex items-center justify-end ">
             <TemplatesDropdown />
-            <LangDropdown />
+            {/* <LangDropdown /> */}
             <SwitchDarkMode />
             <NotifyDropdown className="hidden md:block" />
             <AvatarDropdown />

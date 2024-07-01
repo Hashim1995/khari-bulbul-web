@@ -33,7 +33,7 @@ import { useSelector } from "react-redux";
 import { selectWebsiteTitle } from "../../redux/core/core-slice";
 
 import logo from "../../images/logo.png.png";
-import AAAPP from "../../images/AAA-PP.jpg";
+import AAAPP from "../../images/AAA-PP.png";
 
 //@ts-ignore
 import { Helmet } from "react-helmet";
@@ -72,10 +72,9 @@ const FILTERS = [
 const PageAuthor = () => {
   const { t } = useTranslation();
   const websiteTitle = useSelector(selectWebsiteTitle);
-  const TABS = [t("articles")];
+  const TABS = [t("news"), t("events")];
   const [tabActive, setTabActive] = useState<string>(TABS[0]);
 
-  const currentLayoutLanguage = localStorage.getItem("currentLayoutLanguage");
   const [blogs, setBlogs] = useState<IBlogsItem[]>([]);
   const [totalNumberOfBlogs, setTotalNumberOfBlogs] = useState<number>(0);
   const [blogsLoading, setBlogsLoading] = useState<boolean>(false);
@@ -86,12 +85,10 @@ const PageAuthor = () => {
   const getBlogs = async (page: number) => {
     setBlogsLoading(true);
     try {
-      const res: IGetBlogsResponse = await api.get(
-        `/Post/get-all-active?language=${getLanguageId(currentLayoutLanguage)}`,
-        {
-          params: { offset: page },
-        }
-      );
+      const endpoint = tabActive === t("events") ? "/Post/GetAllEvents" : "/Post/GetAllBlogs";
+      const res: IGetBlogsResponse = await api.get(endpoint, {
+        params: { offset: page },
+      });
       if (res) {
         setTotalNumberOfBlogs(res?.data?.data?.totalDataCount);
         setBlogs(res?.data?.data?.data);
@@ -106,43 +103,33 @@ const PageAuthor = () => {
 
   useEffect(() => {
     getBlogs(currentPage);
-  }, [currentPage]);
+  }, [currentPage, tabActive]);
 
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
   };
 
-  // const handlePageChange = (page: number) => {
-  //   if (page !== currentPage) {
-  //     getBlogs(page);
-  //   }
-  // };
-
-  // const handleClickTab = (item: string) => {
-  //   if (item === tabActive) {
-  //     return;
-  //   }
-  //   setTabActive(item);
-  // };
+  const handleClickTab = (item: string) => {
+    if (item === tabActive) {
+      return;
+    }
+    setTabActive(item);
+    setCurrentPage(1); // Reset page when tab changes
+  };
 
   return (
     <div className={`nc-PageAuthor bg-image`}>
       {/* HEADER */}
       <Helmet>
-        <title>{"Khari Bulbul"}</title>
+        <title>{"Khari Bülbül"}</title>
         <meta name="description" content={websiteTitle?.data?.bioContent} />
         <meta name="robots" content="noindex, follow" />
-        <meta property="og:title" content={"Khari Bulbul"} />
+        <meta property="og:title" content={"Khari Bülbül"} />
         <meta
           property="og:description"
           content={websiteTitle?.data?.bioContent}
         />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://dev.optima.az:8305/author" />
-        <meta
-          property="og:image"
-          content={`https://dev.optima.az:8305/${logo}`}
-        />
       </Helmet>
       <div className="w-full">
         <div className="relative w-full h-40 md:h-60 2xl:h-72">
@@ -167,7 +154,7 @@ const PageAuthor = () => {
             <div className="pt-5 md:pt-1 lg:ml-6 xl:ml-12 flex-grow">
               <div className="max-w-screen-sm space-y-3.5 ">
                 <h2 className="inline-flex items-center text-2xl sm:text-3xl lg:text-4xl font-semibold">
-                  <span>Khari Bulbul</span>
+                  <span>Khari Bülbül</span>
                   {/* <VerifyIcon
                     className="ml-2"
                     iconClass="w-6 h-6 sm:w-7 sm:h-7 xl:w-8 xl:h-8"
@@ -177,12 +164,12 @@ const PageAuthor = () => {
                   {websiteTitle?.data?.bioContent}
                 </span>
                 {/* <a
-                  href=" https://Khari Bulbul05.github.io/"
+                  href=" https://Khari Bülbül05.github.io/"
                   className="flex items-center text-xs font-medium space-x-2.5 cursor-pointer text-neutral-500 dark:text-neutral-400 truncate"
                 >
                   <GlobeAltIcon className="flex-shrink-0 w-4 h-4" />
                   <span className="text-neutral-700 dark:text-neutral-300 truncate">
-                    https://Khari Bulbul05.github.io/
+                    https://Khari Bülbül05.github.io/
                   </span>
                 </a> */}
                 <SocialsList itemClass="block w-7 h-7" />
@@ -219,7 +206,11 @@ const PageAuthor = () => {
           <div className="flex flex-col sm:items-center sm:justify-between sm:flex-row">
             <Nav className="sm:space-x-2">
               {TABS.map((item, index) => (
-                <NavItem key={index} isActive={true}>
+                <NavItem
+                  key={index}
+                  isActive={tabActive === item}
+                  onClick={() => handleClickTab(item)}
+                >
                   {item}
                 </NavItem>
               ))}

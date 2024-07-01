@@ -4,7 +4,7 @@ import { PostDataType } from "data/types";
 import CategoryBadgeList from "components/CategoryBadgeList/CategoryBadgeList";
 import Avatar from "components/Avatar/Avatar";
 import PostTypeFeaturedIcon from "components/PostTypeFeaturedIcon/PostTypeFeaturedIcon";
-import AAAPP from "../../images/AAA-PP.jpg";
+import AAAPP from "../../images/AAA-PP.png";
 import Link from "components/Link";
 
 export interface Card14Props {
@@ -68,9 +68,9 @@ const Card14: FC<Card14Props> = ({
               sizeClass="h-7 w-7 text-sm"
               imgUrl={AAAPP}
               // userName={author.displayName}
-              userName="Khari Bulbul"
+              userName="Khari Bülbül"
             />
-            <span className="block text-white truncate">{"Khari Bulbul"}</span>
+            <span className="block text-white truncate">{"Khari Bülbül"}</span>
           </Link>
           <>
             <span className=" mx-[6px]">·</span>

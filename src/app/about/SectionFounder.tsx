@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { selectWebsiteTitle } from "../../redux/core/core-slice";
 import { dictionary } from "utils/dictionary";
-import AAAPP from "../../images/AAA-PP.jpg";
+import AAAPP from "../../images/AAA-PP.png";
 import Link from "components/Link";
 
 export interface People {
@@ -69,7 +69,7 @@ const SectionFounder = () => {
           </Link>
 
           <h3 className="text-lg font-semibold text-neutral-900 mt-4 md:text-xl dark:text-neutral-200">
-            {"Khari Bulbul"}
+            {"Khari Bülbül"}
           </h3>
           <span className="block text-sm text-neutral-500 sm:text-base dark:text-neutral-400">
             {websiteTitle?.data?.founderSpeciality}

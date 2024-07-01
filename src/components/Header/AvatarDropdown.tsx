@@ -3,7 +3,7 @@ import { avatarImgs } from "contains/fakeData";
 import { Fragment } from "react";
 import Avatar from "components/Avatar/Avatar";
 import SwitchDarkMode2 from "components/SwitchDarkMode/SwitchDarkMode2";
-import AAAPP from '../../images/AAA-PP.jpg'
+import AAAPP from '../../images/AAA-PP.png'
 import Link from "components/Link";
 
 export default function AvatarDropdown() {
