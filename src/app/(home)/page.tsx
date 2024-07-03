@@ -29,6 +29,7 @@ import Skeleton from "../../components/Skeleton/Skeleton";
 import { selectWebsiteTitle } from "../../redux/core/core-slice";
 import { getLanguageId } from "utils/getLanguageId";
 import mainImage from "../../images/main_image.jpg";
+import SectionLargeSlider2 from "./SectionLargeSlider2";
 
 const MAGAZINE1_POSTS = DEMO_POSTS.filter((_, i) => i >= 8 && i < 16);
 const MAGAZINE2_POSTS = DEMO_POSTS.filter((_, i) => i >= 0 && i < 7);
@@ -48,7 +49,7 @@ const PageHome = () => {
   const getGallery = async () => {
     setGalleryLoading(true);
     try {
-      const res = await api.get("/PhotoGallery/get-all-active", {
+      const res = await api.get("/PhotoGallery", {
         params: { offset: 1 },
       });
       if (res) {
@@ -109,11 +110,14 @@ const PageHome = () => {
   useEffect(() => {
     getHomePage();
     getEventsData();
+    getGallery();
   }, []);
 
   return (
     <div className="nc-PageHome bg-image relative">
       <div className="container relative pt-20">
+     
+
         {loadingHomePage ? (
           <div className="centered-skeleton">
             <Skeleton className="skeleton-heading" />
@@ -129,14 +133,22 @@ const PageHome = () => {
             </span>
           </>
         )}
-        <img
-          src={mainImage}
-          className="rounded-3xl shadow-2xl h-125-percentagelg:max-w-3xl object-cover w-full h-full"
-          alt=""
-        />
+         <div id="gallery">
+          {!galleryloading ? (
+            <SectionLargeSlider2
+              className="py-16 lg:py-14"
+              posts={DEMO_POSTS?.filter((_, i) => i < 3)}
+              gallery={gallery?.filter((_, i) => i < 6) || []}
+            />
+          ) : (
+            <div className=" flex justify-center  pt-10 pb-16 md:py-16 lg:pb-28 lg:pt-20">
+              <Loading size="large" />
+            </div>
+          )}
+        </div>
 
-        <div id="about-us" className="mt-20">
-          <div className="container py-16 lg:py-28 space-y-16 lg:space-y-28">
+        <div id="about-us" className="">
+          <div className="container py-16 lg:py-14 space-y-16 lg:space-y-28">
             <SectionHero
               rightImg={rightImg}
               heading={loadingHomePage ? <Skeleton className="skeleton-heading" /> : websiteTitle?.data?.aboutUsHeader}
