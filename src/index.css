@@ -32,3 +32,85 @@ body::before {
 .article-content-container * {
   background-color: transparent !important;
 }
+
+
+/* Custom Skeleton Loading Styles */
+.skeleton {
+  background-color: #f3f3f3; /* Light gray background */
+  animation: skeleton-loading 1.5s infinite ease-in-out; /* Animation for shimmer effect */
+}
+
+@keyframes skeleton-loading {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* Skeleton styles for different components */
+.skeleton-text {
+  height: 1em;
+  margin-bottom: 8px;
+  width: 80%; /* Adjust width as needed */
+}
+
+.skeleton-image {
+  height: 300px; /* Adjust height as needed */
+  width: 100%;
+  margin-top: 20px;
+}
+
+/* Example of specific skeleton styles */
+.skeleton-heading {
+  height: 2em;
+  margin-bottom: 16px;
+  width: 60%; /* Adjust width as needed */
+}
+
+.skeleton-subheading {
+  height: 1.5em;
+  width: 50%; /* Adjust width as needed */
+}
+
+/* Custom Skeleton Loading Styles */
+.nc-Skeleton {
+  display: inline-block;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 4px; /* Added for rounded corners */
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* Skeleton styles for different components */
+.skeleton-heading {
+  height: 2em;
+  margin-bottom: 16px;
+  width: 60%; /* Adjust width as needed */
+}
+
+.skeleton-subheading {
+  height: 1.5em;
+  width: 50%; /* Adjust width as needed */
+}
+
+/* Centering utility class */
+.centered-skeleton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Add more specific styles for other components if needed */

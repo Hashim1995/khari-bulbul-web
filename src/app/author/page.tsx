@@ -71,6 +71,8 @@ const FILTERS = [
 // const TABS = ["Articles", "Favorites", "Saved"];
 const PageAuthor = () => {
   const { t } = useTranslation();
+  const currentLayoutLanguage = localStorage.getItem('currentLayoutLanguage'); 
+
   const websiteTitle = useSelector(selectWebsiteTitle);
   const TABS = [t("news"), t("events")];
   const [tabActive, setTabActive] = useState<string>(TABS[0]);
@@ -86,7 +88,7 @@ const PageAuthor = () => {
     setBlogsLoading(true);
     try {
       const endpoint = tabActive === t("events") ? "/Post/GetAllEvents" : "/Post/GetAllBlogs";
-      const res: IGetBlogsResponse = await api.get(endpoint, {
+      const res: IGetBlogsResponse = await api.get(`${endpoint}?language=${getLanguageId(currentLayoutLanguage)}`, {
         params: { offset: page },
       });
       if (res) {

@@ -31,7 +31,7 @@ const SectionMagazine1: FC<SectionMagazine1Props> = ({
 
   return (
     <div className={`nc-SectionMagazine1 ${className}`}>
-      <HeaderFilter heading={`${defaultHeading()}`} desc={desc} />
+     {blogs && blogs?.length > 0 && <HeaderFilter heading={`${defaultHeading()}`} desc={desc} />}
       <div className="grid justify-center items-center grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8">
         {blogs && blogs?.length > 0 ? (
           <>

@@ -1,6 +1,7 @@
 export enum LayoutLanguage {
     Azerbaijani = 'az',
     English = 'en',
-    Russian = 'ru'
+    Russian = 'ru',
+    German = 'de',
   }
   

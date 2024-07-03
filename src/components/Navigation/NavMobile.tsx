@@ -180,7 +180,7 @@ const NavMobile: React.FC<NavMobileProps> = ({
               <SwitchDarkMode className="bg-neutral-100 dark:bg-neutral-800" />
             </span>
             <span className="block">
-              {/* <LangDropdown /> */}
+              <LangDropdown />
             </span>
           </div>
         </div>

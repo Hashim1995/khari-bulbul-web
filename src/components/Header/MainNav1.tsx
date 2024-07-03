@@ -25,7 +25,7 @@ const MainNav1: FC<MainNav1Props> = () => {
 
           <div className="flex-1 flex items-center justify-end text-neutral-700 dark:text-neutral-100 space-x-1">
             <div className="hidden items-center lg:flex">
-              {/* <LangDropdown /> */}
+              <LangDropdown />
               <SwitchDarkMode />
               {/* <SearchModal />
               <div className="px-1"></div>
