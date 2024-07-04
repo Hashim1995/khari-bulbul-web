@@ -30,11 +30,15 @@ import { selectWebsiteTitle } from "../../redux/core/core-slice";
 import { getLanguageId } from "utils/getLanguageId";
 import mainImage from "../../images/main_image.jpg";
 import SectionLargeSlider2 from "./SectionLargeSlider2";
+import { useTranslation } from "react-i18next";
 
 const MAGAZINE1_POSTS = DEMO_POSTS.filter((_, i) => i >= 8 && i < 16);
 const MAGAZINE2_POSTS = DEMO_POSTS.filter((_, i) => i >= 0 && i < 7);
 
 const PageHome = () => {
+
+  const { t } = useTranslation();
+
   const websiteTitle = useSelector(selectWebsiteTitle);
   const theme = useReadLocalStorage("theme");
   const currentLayoutLanguage = localStorage.getItem("currentLayoutLanguage");
@@ -81,7 +85,7 @@ const PageHome = () => {
   const getEventsData = async () => {
     setLoadingHomePage(true);
     try {
-      const res: any = await api.get(`/Post/GetAllEvents`);
+      const res: any = await api.get(`/Post/GetAllActiveEvents?language=${getLanguageId(currentLayoutLanguage)}`);
       if (res.data?.isSuccess) {
         setEventsData(res?.data?.data?.data);
       }
@@ -95,7 +99,7 @@ const PageHome = () => {
   const getHomePage = async () => {
     setLoadingHomePage(true);
     try {
-      const res: any = await api.get(`/Post/GetAllBlogs`);
+      const res: any = await api.get(`/Post/GetAllActiveBlogs?language=${getLanguageId(currentLayoutLanguage)}`);
       if (res.data?.isSuccess) {
         setHomePageData(res?.data?.data);
         setPostsData(res?.data?.data?.data);
@@ -164,8 +168,8 @@ const PageHome = () => {
               className="py-16 lg:py-14"
               posts={MAGAZINE1_POSTS}
               blogs={eventsData}
-              heading={websiteTitle?.data?.eventsHeader}
-              desc={websiteTitle?.data?.eventsContent}
+              heading={loadingHomePage ?  <Skeleton className="skeleton-heading" /> : (websiteTitle?.data?.eventsHeader || t('events')) }
+              desc={loadingHomePage ?  <Skeleton className="skeleton-heading" /> : websiteTitle?.data?.eventsContent}
             />
           </div>
         ) : (
@@ -179,8 +183,8 @@ const PageHome = () => {
               className="py-16 lg:py-14"
               posts={MAGAZINE1_POSTS}
               blogs={postsData}
-              heading={websiteTitle?.data?.newsHeader}
-              desc={websiteTitle?.data?.newsContent}
+              heading={loadingHomePage ?  <Skeleton className="skeleton-heading" /> : (websiteTitle?.data?.newsHeader || t('news'))}
+              desc={loadingHomePage ?  <Skeleton className="skeleton-heading" /> : websiteTitle?.data?.newsContent}
             />
           </div>
         ) : (

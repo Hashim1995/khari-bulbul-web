@@ -71,7 +71,7 @@ const FILTERS = [
 // const TABS = ["Articles", "Favorites", "Saved"];
 const PageAuthor = () => {
   const { t } = useTranslation();
-  const currentLayoutLanguage = localStorage.getItem('currentLayoutLanguage'); 
+  const currentLayoutLanguage = localStorage.getItem("currentLayoutLanguage");
 
   const websiteTitle = useSelector(selectWebsiteTitle);
   const TABS = [t("news"), t("events")];
@@ -87,10 +87,16 @@ const PageAuthor = () => {
   const getBlogs = async (page: number) => {
     setBlogsLoading(true);
     try {
-      const endpoint = tabActive === t("events") ? "/Post/GetAllEvents" : "/Post/GetAllBlogs";
-      const res: IGetBlogsResponse = await api.get(`${endpoint}?language=${getLanguageId(currentLayoutLanguage)}`, {
-        params: { offset: page },
-      });
+      const endpoint =
+        tabActive === t("events")
+          ? "/Post/GetAllActiveEvents"
+          : "/Post/GetAllActiveBlogs";
+      const res: IGetBlogsResponse = await api.get(
+        `${endpoint}?language=${getLanguageId(currentLayoutLanguage)}`,
+        {
+          params: { offset: page },
+        }
+      );
       if (res) {
         setTotalNumberOfBlogs(res?.data?.data?.totalDataCount);
         setBlogs(res?.data?.data?.data);
@@ -246,15 +252,15 @@ const PageAuthor = () => {
           )}
 
           {/* PAGINATION */}
-          <div className="flex flex-col mt-12 lg:mt-16 space-y-5 sm:space-y-0 sm:space-x-3 sm:flex-row sm:justify-between sm:items-center">
-            {/* <Pagination /> */}
-            {/* <ButtonPrimary>Show me more</ButtonPrimary> */}
-            <PaginationCustom
-              totalNumberOfPages={Math.ceil(totalNumberOfBlogs / pageSize)}
-              currentPage={currentPage}
-              onPageChange={handlePageChange}
-            />
-          </div>
+          {totalNumberOfBlogs > 0 && (
+            <div className="flex flex-col mt-12 lg:mt-16 space-y-5 sm:space-y-0 sm:space-x-3 sm:flex-row sm:justify-between sm:items-center">
+              <PaginationCustom
+                totalNumberOfPages={Math.ceil(totalNumberOfBlogs / pageSize)}
+                currentPage={currentPage}
+                onPageChange={handlePageChange}
+              />
+            </div>
+          )}
         </main>
 
         {/* === SECTION 5 === */}
