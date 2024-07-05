@@ -1,6 +1,6 @@
 export const dictionary = {
     az: {
-        about: "Haqqında",
+        about: "Haqqımızda",
         aboutUs:"Bizim haqqımızda",
         aboutUsDesc:"Biz qərəzsiz və müstəqilik və hər gün dünyada milyonlarla insanı məlumatlandıran, öyrədən və əyləndirən fərqli, dünya səviyyəli proqramlar və məzmunlar yaradırıq.",
         fullName: "Ad və soy ",
