@@ -33,7 +33,7 @@ const Logo: React.FC<LogoProps> = () => {
       {/* THIS USE FOR MY MULTI DEMO */}
       {/* IF YOU ARE MY CLIENT. PLESE DELETE THIS CODE AND YOU YOUR IMAGE PNG BY BELLOW CODE */}
       {/* <LogoSvg /> */}
-      <img src={coverPhoto || logoSrc} alt="Logo" width={50} height={50} />
+      <img src={coverPhoto || logoSrc} alt="Logo" width={50} height={50} className="logo-custom-size"/>
     </Link>
   );
 };
