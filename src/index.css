@@ -33,7 +33,6 @@ body::before {
   background-color: transparent !important;
 }
 
-
 /* Custom Skeleton Loading Styles */
 .skeleton {
   background-color: #f3f3f3; /* Light gray background */
@@ -114,3 +113,15 @@ body::before {
 }
 
 /* Add more specific styles for other components if needed */
+
+.logo-custom-size {
+  width: 90px !important;
+  height: 67px !important;
+  object-fit: contain;
+}
+
+.logo-custom-size-footer > img{
+  width: 150px !important;
+  height: 150px !important;
+  object-fit: contain;
+}

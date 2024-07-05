@@ -21,11 +21,28 @@ function App() {
     dispatch<any>(fetchContactData());
     dispatch<any>(fetchLogoData());
   }, []);
+
+  useEffect(() => {
+    let link = document.querySelector("link[rel~='icon']");
+    if (!link) {
+      link = document.createElement("link");
+      // @ts-ignore
+      link.rel = "icon";
+      document.getElementsByTagName("head")[0].appendChild(link);
+    }
+    // @ts-ignore
+    link.href = {coverPhoto}
+  }, []);
   return (
     <div className="bg-[#f8f8f8] text-base dark:bg-neutral-900/95 text-neutral-900 dark:text-neutral-200 font-body">
       <Helmet>
         <title>{t("homePage")}</title>
-      <link rel="icon" type="image/png" href={coverPhoto || Logo} sizes="16x16" />
+        <link
+          rel="icon"
+          type="image/png"
+          href={coverPhoto || Logo}
+          sizes="16x16"
+        />
         <meta name="description" content={t("websiteDescription")} />
         <meta name="robots" content="index, follow" />
         <meta property="og:title" content={t("homePage")} />
