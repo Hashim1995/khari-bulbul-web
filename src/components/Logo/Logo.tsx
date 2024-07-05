@@ -7,6 +7,8 @@ import Link from "components/Link";
 import LogoSrc from "../../images/logo.png.png";
 import { useReadLocalStorage } from "usehooks-ts";
 import { useThemeMode } from "hooks/useThemeMode";
+import { RootState } from "redux/store";
+import { useSelector } from "react-redux";
 
 export interface LogoProps {
   img?: string;
@@ -17,6 +19,9 @@ const Logo: React.FC<LogoProps> = () => {
   // Read the theme from local storage
   const { isDarkMode } = useThemeMode();
 
+  const { data, status } = useSelector((state: RootState) => state.logo);
+  const coverPhoto = data?.data?.coverPhoto?.fileUrl;
+  
   // Choose the logo based on the theme
   const logoSrc = LogoSrc;
 
@@ -28,7 +33,7 @@ const Logo: React.FC<LogoProps> = () => {
       {/* THIS USE FOR MY MULTI DEMO */}
       {/* IF YOU ARE MY CLIENT. PLESE DELETE THIS CODE AND YOU YOUR IMAGE PNG BY BELLOW CODE */}
       {/* <LogoSvg /> */}
-      <img src={logoSrc} alt="Logo" width={50} height={50} />
+      <img src={coverPhoto || logoSrc} alt="Logo" width={50} height={50} />
     </Link>
   );
 };

@@ -2,11 +2,7 @@ import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 import api from 'utils/axios';
 
 export interface UserData {
-data:{  id: string;
-  website: string;
-  email: string;
-  facebook: string;
-  instagram: string;
+data:{  
   coverPhoto: any;
 }
 }
@@ -24,11 +20,11 @@ const initialState: SettingState = {
 };
 
 // Async thunk for fetching user data
-export const fetchContactData = createAsyncThunk(
-  'setting/fetchContactData',
+export const fetchLogoData = createAsyncThunk(
+  'setting/fetchLogoData',
   async () => {
     try {
-      const response = await api.get('/Setting');
+      const response = await api.get('/Logo');
       return response.data;
     } catch (err) {
       throw err;
@@ -37,7 +33,7 @@ export const fetchContactData = createAsyncThunk(
 );
 
 // Create the user slice
-const contactSlice = createSlice({
+const logoSlice = createSlice({
   name: 'setting',
   initialState,
   reducers: {
@@ -48,14 +44,14 @@ const contactSlice = createSlice({
   },
   extraReducers: builder => {
     builder
-      .addCase(fetchContactData.pending, state => {
+      .addCase(fetchLogoData.pending, state => {
         state.status = 'loading';
       })
-      .addCase(fetchContactData.fulfilled, (state, action) => {
+      .addCase(fetchLogoData.fulfilled, (state, action) => {
         state.status = 'succeeded';
         state.data = action.payload; // Assign action.payload to state.data
       })
-      .addCase(fetchContactData.rejected, (state, action) => {
+      .addCase(fetchLogoData.rejected, (state, action) => {
         state.status = 'failed';
         state.error = action.error; // Use action.error to get the thrown error
       });
@@ -65,5 +61,5 @@ const contactSlice = createSlice({
 });
 
 // Export the reducer and actions
-export const { setSetting } = contactSlice.actions;
-export default contactSlice.reducer;
+export const { setSetting } = logoSlice.actions;
+export default logoSlice.reducer;

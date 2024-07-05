@@ -1,6 +1,10 @@
 import ButtonPrimary from "components/Button/ButtonPrimary";
 import React, { FC, ReactNode } from "react";
 import Image from "../Image";
+import { useSelector } from "react-redux";
+import { RootState } from "redux/store";
+import Loading from "components/Button/Loading";
+import fallbackImage from "../../images/default-fallback-image.png"
 
 export interface SectionHeroProps {
   className?: string;
@@ -17,6 +21,14 @@ const SectionHero: FC<SectionHeroProps> = ({
   subHeading,
   btnText,
 }) => {
+
+  const contact = useSelector((state: RootState) => state?.setting);
+  const aboutUsImage = contact?.data?.data?.coverPhoto;
+  const status = contact?.status;
+
+
+
+  
   return (
     <div className={`nc-SectionHero relative ${className}`}>
       <div className="flex flex-col lg:flex-row space-y-14 lg:space-y-0 lg:space-x-10 items-center relative text-center lg:text-left">
@@ -29,12 +41,15 @@ const SectionHero: FC<SectionHeroProps> = ({
           </span>
           {!!btnText && <ButtonPrimary href="/">{btnText}</ButtonPrimary>}
         </div>
-        <div className="flex-grow">
-          <Image
-            className="w-full scale-y-125 object-contain rounded-lg shadow-lg"
-            src={rightImg}
-            alt=""
-          />
+        <div className="flex-grow flex justify-center items-center w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl h-auto">
+          {status === 'loading' ? (
+            <Loading size="large" />
+          ) : (
+            <Image
+              className="w-full scale-y-125 object-contain rounded-lg shadow-lg"
+              src={aboutUsImage?.fileUrl || fallbackImage} 
+            />
+          )}
         </div>
       </div>
     </div>

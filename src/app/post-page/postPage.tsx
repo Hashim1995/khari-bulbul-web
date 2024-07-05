@@ -7,9 +7,14 @@ import { Helmet } from "react-helmet";
 import { useParams } from "react-router-dom";
 import api from "utils/axios";
 import logo from "../../images/logo.png.png";
+import { RootState } from "redux/store";
+import { useSelector } from "react-redux";
 
 function PostPage() {
   const { id } = useParams();
+  const { data, status } = useSelector((state: RootState) => state.logo);
+  const coverPhoto = data?.data?.coverPhoto?.fileUrl;
+  
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [postData, setPostData] = useState<IBlogsItem>();
 
@@ -56,7 +61,7 @@ function PostPage() {
               />
               <meta
                 property="og:image"
-                content={`https://dev.optima.az:8305/${logo}`}
+                content={`https://dev.optima.az:8305/${coverPhoto || logo}`}
               />
               <meta
                 name="keywords"

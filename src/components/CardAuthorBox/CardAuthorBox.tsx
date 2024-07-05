@@ -4,6 +4,8 @@ import { ArrowRightIcon } from "@heroicons/react/24/outline";
 import Avatar from "components/Avatar/Avatar";
 import AAAPP from '../../images/AAA-PP.png'
 import Link from "components/Link";
+import { RootState } from "redux/store";
+import { useSelector } from "react-redux";
 
 export interface CardAuthorBoxProps {
   className?: string;
@@ -12,6 +14,9 @@ export interface CardAuthorBoxProps {
 
 const CardAuthorBox: FC<CardAuthorBoxProps> = ({ className = "", author }) => {
   const { displayName, href = "/", avatar, jobName, count } = author;
+  const { data, status } = useSelector((state: RootState) => state.logo);
+  const coverPhoto = data?.data?.coverPhoto?.fileUrl;
+  
   return (
     <Link
       href={href}
@@ -20,7 +25,7 @@ const CardAuthorBox: FC<CardAuthorBoxProps> = ({ className = "", author }) => {
       <Avatar
         sizeClass="w-20 h-20 text-2xl"
         radius="rounded-full"
-        imgUrl={AAAPP}
+        imgUrl={coverPhoto || AAAPP}
         userName={displayName}
       />
       <div className="mt-3">

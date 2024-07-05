@@ -9,9 +9,15 @@ import { useTranslation } from "react-i18next";
 import logo from "../../images/logo.png.png";
 // @ts-ignore
 import { Helmet } from "react-helmet";
+import { useSelector } from "react-redux";
+import { RootState } from "redux/store";
 
 function BookView() {
   const { t } = useTranslation();
+
+  const { data, status } = useSelector((state: RootState) => state.logo);
+  const coverPhoto = data?.data?.coverPhoto?.fileUrl;
+
   const { id } = useParams<{ id: string }>();
   const [book, setBook] = useState<IBooksItem | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
@@ -64,12 +70,8 @@ function BookView() {
             />
             <meta property="og:type" content="website" />
             <meta
-              property="og:url"
-              content={`https://dev.optima.az:8305/books/${id}`}
-            />
-            <meta
               property="og:image"
-              content={`https://dev.optima.az:8305/${logo}`}
+              content={`https://dev.optima.az:8305/${coverPhoto || logo}`}
             />
             <meta
               name="keywords"

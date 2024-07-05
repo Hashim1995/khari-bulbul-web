@@ -3,6 +3,8 @@ import Avatar from "components/Avatar/Avatar";
 import { IBlogsItem, PostDataType } from "data/types";
 import AAAPP from "../../images/AAA-PP.png";
 import Link from "components/Link";
+import { useSelector } from "react-redux";
+import { RootState } from "redux/store";
 
 export interface PostCardMetaProps {
   className?: string;
@@ -20,6 +22,8 @@ const PostCardMeta: FC<PostCardMetaProps> = ({
   avatarSize = "h-7 w-7 text-sm",
 }) => {
   const { createdDate, userId } = meta;
+  const { data, status } = useSelector((state: RootState) => state.logo);
+  const coverPhoto = data?.data?.coverPhoto?.fileUrl;
 
   return (
     <div
@@ -30,7 +34,7 @@ const PostCardMeta: FC<PostCardMetaProps> = ({
           <Avatar
             radius="rounded-full"
             sizeClass={avatarSize}
-            imgUrl={AAAPP}
+            imgUrl={coverPhoto || AAAPP}
             userName={"Khari Bülbül"}
           />
         )}

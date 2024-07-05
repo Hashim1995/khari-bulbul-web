@@ -4,20 +4,30 @@ import { PostAuthorType } from "data/types";
 import Link from "components/Link";
 import AAAPP from "../../images/AAA-PP.png";
 import React, { FC } from "react";
+import { RootState } from "redux/store";
+import { useSelector } from "react-redux";
+import Loading from "components/Button/Loading";
+import Skeleton from "components/Skeleton/Skeleton";
 
 export interface SingleAuthorProps {
   author?: PostAuthorType;
 }
 
 const SingleAuthor: FC<SingleAuthorProps> = ({ author = DEMO_AUTHORS[1] }) => {
+  const { data, status } = useSelector((state: RootState) => state.logo);
+  const coverPhoto = data?.data?.coverPhoto?.fileUrl;
   return (
     <div className="nc-SingleAuthor flex">
       <Link href={author.href}>
-        <Avatar
-          imgUrl={AAAPP}
-          userName={"Khari Bülbül"}
-          sizeClass="h-12 w-12 text-lg sm:text-xl sm:h-24 sm:w-24"
-        />
+        {status === 'loading' ? (
+          <Skeleton /> 
+        ) : (
+          <Avatar
+            imgUrl={coverPhoto || AAAPP} 
+            userName="Khari Bülbül"
+            sizeClass="h-12 w-12 text-lg sm:text-xl sm:h-24 sm:w-24"
+          />
+        )}
       </Link>
       <div className="flex flex-col ml-3 max-w-lg sm:ml-5">
         <span className="text-xs text-neutral-400 uppercase tracking-wider">
