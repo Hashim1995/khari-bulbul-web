@@ -6,6 +6,8 @@ import Avatar from "components/Avatar/Avatar";
 import PostTypeFeaturedIcon from "components/PostTypeFeaturedIcon/PostTypeFeaturedIcon";
 import AAAPP from "../../images/AAA-PP.png";
 import Link from "components/Link";
+import { useSelector } from "react-redux";
+import { RootState } from "redux/store";
 
 export interface Card14Props {
   className?: string;
@@ -22,6 +24,9 @@ const Card14: FC<Card14Props> = ({
 }) => {
   const { title, href, featuredImage, categories, author, date, postType } =
     post;
+
+  const { data } = useSelector((state: RootState) => state.logo);
+  const coverPhoto = data?.data?.coverPhoto?.fileUrl;
 
   return (
     <div
@@ -66,8 +71,7 @@ const Card14: FC<Card14Props> = ({
               radius="rounded-full"
               containerClassName="ring-2 ring-white"
               sizeClass="h-7 w-7 text-sm"
-              imgUrl={AAAPP}
-              // userName={author.displayName}
+              imgUrl={coverPhoto || AAAPP}
               userName="Khari Bülbül"
             />
             <span className="block text-white truncate">{"Khari Bülbül"}</span>

@@ -4,6 +4,8 @@ import Avatar from "components/Avatar/Avatar";
 import Link from "components/Link";
 import AAAPP from "../../images/AAA-PP.png";
 import dayjs from "dayjs";
+import { RootState } from "redux/store";
+import { useSelector } from "react-redux";
 
 export interface CardAuthor2Props
   extends Pick<PostDataType, "date" | "author"> {
@@ -19,19 +21,21 @@ const CardAuthor2: FC<CardAuthor2Props> = ({
   hoverReadingTime = true,
 }) => {
   const { displayName = "Khari Bülbül", href = "/", avatar } = author;
-
+  const { data, status } = useSelector((state: RootState) => state.logo);
+  const coverPhoto = data?.data?.coverPhoto?.fileUrl;
+  
   return (
     <Link
       href={href}
       className={`nc-CardAuthor2 relative inline-flex items-center ${className}`}
     >
-      <Avatar
+      (<Avatar
         sizeClass="h-10 w-10 text-base"
         containerClassName="flex-shrink-0 mr-3"
         radius="rounded-full"
-        imgUrl={AAAPP}
+        imgUrl={coverPhoto || AAAPP}
         userName={displayName}
-      />
+      />)
       <div>
         <h2
           className={`text-sm text-neutral-700 hover:text-black dark:text-neutral-300 dark:hover:text-white font-medium`}

@@ -1,5 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 import contactSlice from './contact-slice';
+import logoSlice from './logo-slice'; 
 import { LayoutLanguage } from '../models/common';
 import coreReducer from './core/core-slice';
 
@@ -36,6 +37,7 @@ const preloadedState = {
 export const store = configureStore({
   reducer: {
     setting: contactSlice,
+    logo: logoSlice, 
     core: coreReducer
   },
   preloadedState

@@ -4,6 +4,8 @@ import { IBlogsItem, PostDataType } from "data/types";
 import { DEMO_POSTS } from "data/posts";
 import AAAPP from "../../images/AAA-PP.png";
 import Link from "components/Link";
+import { useSelector } from "react-redux";
+import { RootState } from "redux/store";
 
 const metaDemo: PostMeta2Props["meta"] = DEMO_POSTS[0];
 
@@ -25,6 +27,8 @@ const PostMeta2: FC<PostMeta2Props> = ({
   post,
 }) => {
   const { date, author, categories, readingTime } = meta;
+  const { data, status } = useSelector((state: RootState) => state.logo);
+  const coverPhoto = data?.data?.coverPhoto?.fileUrl;
   return (
     <div
       className={`nc-PostMeta2 flex items-center flex-wrap text-neutral-700 text-left dark:text-neutral-200 ${
@@ -39,7 +43,7 @@ const PostMeta2: FC<PostMeta2Props> = ({
               ? "h-6 w-6 text-sm"
               : "h-10 w-10 sm:h-11 sm:w-11 text-xl"
           }
-          imgUrl={AAAPP}
+          imgUrl={coverPhoto || AAAPP}
           userName={"Khari Bülbül"}
         />
       </Link>

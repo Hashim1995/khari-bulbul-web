@@ -7,6 +7,8 @@ import { selectWebsiteTitle } from "../../redux/core/core-slice";
 import { dictionary } from "utils/dictionary";
 import AAAPP from "../../images/AAA-PP.png";
 import Link from "components/Link";
+import { RootState } from "redux/store";
+import Skeleton from "components/Skeleton/Skeleton";
 
 export interface People {
   id: string;
@@ -48,6 +50,9 @@ const FOUNDER_DEMO: People[] = [
 const SectionFounder = () => {
   const { t } = useTranslation();
   const websiteTitle = useSelector(selectWebsiteTitle);
+  const { data, status } = useSelector((state: RootState) => state.logo);
+  const coverPhoto = data?.data?.coverPhoto?.fileUrl;
+  
   return (
     <div className="nc-SectionFounder relative text-center">
       <Heading
@@ -59,13 +64,17 @@ const SectionFounder = () => {
       {FOUNDER_DEMO.map((item) => (
         <div key={item.id} className="mx-auto max-w-sm">
           <Link href="/author">
-            <NcImage
-              alt="founder"
-              fill
-              containerClassName="relative h-0 aspect-h-1 aspect-w-1 rounded-xl overflow-hidden z-0"
-              className="absolute inset-0 object-cover"
-              src={item.avatar}
-            />
+            {status === 'loading' ? (
+              <Skeleton /> 
+            ) : (
+              <NcImage
+                alt="founder"
+                fill
+                containerClassName="relative h-0 aspect-h-1 aspect-w-1 rounded-xl overflow-hidden z-0"
+                className="absolute inset-0 object-cover"
+                src={coverPhoto || item.avatar} 
+              />
+            )}
           </Link>
 
           <h3 className="text-lg font-semibold text-neutral-900 mt-4 md:text-xl dark:text-neutral-200">

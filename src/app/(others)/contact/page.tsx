@@ -46,7 +46,9 @@ const PageContact = () => {
   //   dispatch<any>(fetchContactData())
   // }, [])
   const { t } = useTranslation();
-
+  const { data, status } = useSelector((state: RootState) => state.logo);
+  const coverPhoto = data?.data?.coverPhoto?.fileUrl;
+  
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [showSuccessAlert, setShowSuccessAlert] = useState<boolean>(false); // State to control showing success alert
 
@@ -150,7 +152,7 @@ const PageContact = () => {
           />
           <meta
             property="og:image"
-            content={`https://dev.optima.az:8305/${logo}`}
+            content={`https://dev.optima.az:8305/${coverPhoto || logo}`}
           />
           <meta
             name="keywords"

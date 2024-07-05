@@ -38,6 +38,7 @@ import AAAPP from "../../images/AAA-PP.png";
 //@ts-ignore
 import { Helmet } from "react-helmet";
 import { getLanguageId } from "utils/getLanguageId";
+import { RootState } from "redux/store";
 
 // const posts: PostDataType[] = DEMO_POSTS.filter((_, i) => i < 12);
 const POST_TEMP = {
@@ -71,6 +72,9 @@ const FILTERS = [
 // const TABS = ["Articles", "Favorites", "Saved"];
 const PageAuthor = () => {
   const { t } = useTranslation();
+  const { data, status } = useSelector((state: RootState) => state.logo);
+  const coverPhoto = data?.data?.coverPhoto?.fileUrl;
+
   const currentLayoutLanguage = localStorage.getItem("currentLayoutLanguage");
 
   const websiteTitle = useSelector(selectWebsiteTitle);
@@ -153,9 +157,13 @@ const PageAuthor = () => {
         <div className="container -mt-10 lg:-mt-16">
           <div className="relative bg-white dark:bg-neutral-900 dark:border dark:border-neutral-700 p-5 lg:p-8 rounded-3xl md:rounded-[40px] shadow-xl flex flex-col md:flex-row">
             <div className="w-32 lg:w-40 flex-shrink-0 mt-12 sm:mt-0">
-              <div className="wil-avatar relative flex-shrink-0 inline-flex items-center justify-center overflow-hidden text-neutral-100 uppercase font-semibold rounded-full w-20 h-20 text-xl lg:text-2xl lg:w-36 lg:h-36 ring-4 ring-white dark:ring-0 shadow-2xl z-0">
-                <Image alt="Avatar" src={AAAPP} fill className="object-cover" />
-              </div>
+            <div className="wil-avatar relative flex-shrink-0 inline-flex items-center justify-center overflow-hidden text-neutral-100 uppercase font-semibold rounded-full w-20 h-20 text-xl lg:text-2xl lg:w-36 lg:h-36 ring-4 ring-white dark:ring-0 shadow-2xl z-0">
+              {status === 'loading' ? (
+                <Loading size="large" />
+              ) : (
+                <Image alt="Avatar" src={coverPhoto || AAAPP} fill className="object-cover" />
+              )}
+            </div>
             </div>
 
             {/*  */}

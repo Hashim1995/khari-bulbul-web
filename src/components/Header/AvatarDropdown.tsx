@@ -5,8 +5,13 @@ import Avatar from "components/Avatar/Avatar";
 import SwitchDarkMode2 from "components/SwitchDarkMode/SwitchDarkMode2";
 import AAAPP from '../../images/AAA-PP.png'
 import Link from "components/Link";
+import { RootState } from "redux/store";
+import { useSelector } from "react-redux";
 
 export default function AvatarDropdown() {
+  const { data, status } = useSelector((state: RootState) => state.logo);
+  const coverPhoto = data?.data?.coverPhoto?.fileUrl;
+  
   return (
     <div className="AvatarDropdown ">
       <Popover className="relative">
@@ -50,7 +55,7 @@ export default function AvatarDropdown() {
                 <div className="overflow-hidden rounded-3xl shadow-lg ring-1 ring-black ring-opacity-5">
                   <div className="relative grid grid-cols-1 gap-6 bg-white dark:bg-neutral-800 py-7 px-6">
                     <div className="flex items-center space-x-3">
-                      <Avatar imgUrl={AAAPP} sizeClass="w-12 h-12" />
+                      <Avatar imgUrl={coverPhoto || AAAPP} sizeClass="w-12 h-12" />
 
                       <div className="flex-grow">
                         <h4 className="font-semibold">Eden Smith</h4>

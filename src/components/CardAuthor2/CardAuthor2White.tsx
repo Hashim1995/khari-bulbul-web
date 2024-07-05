@@ -3,6 +3,8 @@ import Avatar from "components/Avatar/Avatar";
 import { CardAuthor2Props } from "./CardAuthor2";
 import AAAPP from "../../images/AAA-PP.png";
 import Link from "components/Link";
+import { useSelector } from "react-redux";
+import { RootState } from "redux/store";
 
 export interface CardAuthor2WhiteProps extends CardAuthor2Props {}
 
@@ -13,6 +15,8 @@ const CardAuthor2White: FC<CardAuthor2WhiteProps> = ({
   date,
 }) => {
   const { displayName = "Khari Bülbül", href = "/", avatar } = author;
+  const { data, status } = useSelector((state: RootState) => state.logo);
+  const coverPhoto = data?.data?.coverPhoto?.fileUrl;
   return (
     <Link
       href={href}
@@ -22,7 +26,7 @@ const CardAuthor2White: FC<CardAuthor2WhiteProps> = ({
         sizeClass="h-10 w-10 text-base"
         containerClassName="flex-shrink-0 mr-3"
         radius="rounded-full"
-        imgUrl={AAAPP}
+        imgUrl={coverPhoto || AAAPP}
         userName={displayName}
       />
       <div>

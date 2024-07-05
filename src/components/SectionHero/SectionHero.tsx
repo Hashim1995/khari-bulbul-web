@@ -22,7 +22,7 @@ const SectionHero: FC<SectionHeroProps> = ({
   btnText,
 }) => {
 
-  const contact = useSelector((state: RootState) => state.setting);
+  const contact = useSelector((state: RootState) => state?.setting);
   const aboutUsImage = contact?.data?.data?.coverPhoto;
   const status = contact?.status;
 
@@ -41,7 +41,7 @@ const SectionHero: FC<SectionHeroProps> = ({
           </span>
           {!!btnText && <ButtonPrimary href="/">{btnText}</ButtonPrimary>}
         </div>
-        <div className="flex-grow flex justify-center items-center">
+        <div className="flex-grow flex justify-center items-center w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl h-auto">
           {status === 'loading' ? (
             <Loading size="large" />
           ) : (
