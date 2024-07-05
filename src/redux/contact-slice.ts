@@ -6,7 +6,9 @@ data:{  id: string;
   website: string;
   email: string;
   facebook: string;
-  instagram: string;}
+  instagram: string;
+  coverPhoto: any;
+}
 }
 
 interface SettingState {
