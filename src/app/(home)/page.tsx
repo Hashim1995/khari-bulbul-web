@@ -53,7 +53,7 @@ const PageHome = () => {
   const getGallery = async () => {
     setGalleryLoading(true);
     try {
-      const res = await api.get("/PhotoGallery", {
+      const res = await api.get("/PhotoGallery/get-all-active", {
         params: { offset: 1 },
       });
       if (res) {
