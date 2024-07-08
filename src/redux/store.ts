@@ -7,7 +7,7 @@ import coreReducer from './core/core-slice';
 const savedLayoutLanguage = localStorage.getItem('currentLayoutLanguage');
 const initialLayoutLanguage = savedLayoutLanguage
   ? (savedLayoutLanguage as LayoutLanguage)
-  : LayoutLanguage.Azerbaijani;
+  : LayoutLanguage.German;
 
 const preloadedState = {
   core: {

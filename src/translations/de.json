@@ -53,7 +53,18 @@
       "homePage": "Startseite",
       "price": "Preis",
       "websiteDescription": "Entdecken Sie kluge Bücher einer berühmten Autorin über Frauenrechte und ihren Einfluss auf die Gesellschaft. Lesen Sie nachdenkliche Blogs zu relevanten Themen. Stärken Sie sich mit Wissen.",
-      "events": "Veranstaltungen"
+      "events": "Veranstaltungen",
+    
+      
+        "fullNameRequired": "Vollständiger Name ist erforderlich!",
+        "emailRequired": "E-Mail ist erforderlich!",
+        "invalidEmailError": "Bitte geben Sie eine gültige E-Mail-Adresse ein!",
+        "messageRequired": "Nachricht ist erforderlich!",
+        "invalidMessageError": "Maximal 300 Zeichen erlaubt!"
+      
+      
+      
+      
     }
   }
   

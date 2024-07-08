@@ -53,7 +53,15 @@
       "homePage": "Home Page",
       "price": "Price",
       "websiteDescription": "Discover insightful books on women's rights and their societal impact from an acclaimed author. Explore thought-provoking blogs on related topics. Empower yourself with knowledge.",
-      "events": "Events"
+      "events": "Events",
+      
+        "fullNameRequired": "Full name is required!",
+        "emailRequired": "Email is required!",
+        "invalidEmailError": "Please enter a valid email address!",
+        "messageRequired": "Message is required!",
+        "invalidMessageError": "Maximum 300 characters allowed!"
+      
+      
     }
   }
   

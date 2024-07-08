@@ -53,7 +53,13 @@
       "homePage": "Ana Səhifə",
       "price": "Qiymət",
       "websiteDescription": "Məşhur bir müəllifin qadın hüquqları və onların cəmiyyətdəki təsirləri ilə bağlı müdrik kitablarını keşf edin. Əlaqəli mövzulara dair düşündürücü blogları oxuyun. Özünüzü biliklərlə gücləndirin.",
-      "events": "Tədbirlər"
+      "events": "Tədbirlər",
+
+      "fullNameRequired": "Tam ad tələb olunur!" ,
+      "emailRequired": "Email tələb olunur!",
+      "invalidEmailError":"Zəhmət olmasa düzgün email daxil edin!",
+      "messageRequired": "Mesaj tələb olunur!",
+      "invalidMessageError":"Maksimum 300 simvol olar"
     }
   }
   

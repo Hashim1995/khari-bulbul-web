@@ -17,7 +17,7 @@ export const selectWebsiteTitle = (state: any) => state.core.websiteTitle;
 const coreSlice = createSlice({
   name: 'core',
   initialState: {
-    currentLayoutLanguage: LayoutLanguage.Azerbaijani,
+    currentLayoutLanguage: LayoutLanguage.German,
     websiteTitle: {
       caruselGalleryHeader: null,
       caruselGalleryContent: null,

@@ -13,7 +13,7 @@ export const headerLanguage = [
     id: LayoutLanguage.Azerbaijani,
     name: "Azərbaycan",
     description: "",
-    active: true,
+    active: false,
   },
   {
     id: LayoutLanguage.English,
@@ -25,7 +25,7 @@ export const headerLanguage = [
     id: LayoutLanguage.German,
     name: "Deutsch",
     description: "",
-    active: false,
+    active: true,
   }
 ];
 
