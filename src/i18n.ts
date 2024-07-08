@@ -6,7 +6,7 @@ import ruJSON from './translations/ru.json';
 import deJSON from './translations/de.json';
 
 const currentLayoutLanguage =
-  localStorage.getItem('currentLayoutLanguage') || 'az'; // Default to 'az' if not found
+  localStorage.getItem('currentLayoutLanguage') || 'de'; // Default to 'az' if not found
 
 i18n
   .use(initReactI18next)

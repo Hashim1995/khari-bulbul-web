@@ -202,7 +202,7 @@ const PageContact = () => {
                 rules={{
                   required: {
                     value: true,
-                    message: formErrorMessages?.az?.fullName,
+                    message: t("fullNameRequired"),
                   },
                 }}
                 render={({ field: { onChange, value } }: any) => (
@@ -269,7 +269,7 @@ const PageContact = () => {
 
                   required: {
                     value: true,
-                    message: t("message"),
+                    message: t("messageRequired"),
                   },
                 }}
                 render={({ field: { onChange, value } }: any) => (
