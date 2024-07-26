@@ -393,7 +393,7 @@ export const NAVIGATION_DEMO_2: NavItemType[] = [
   {
     id: randomId(),
     href: "/",
-    hash: "newsletter",
+    hash: "news",
     name: "news",
   },
 
