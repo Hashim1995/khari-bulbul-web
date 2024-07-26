@@ -178,7 +178,7 @@ const PageHome = () => {
           </div>
         )}
         {!loadingHomePage ? (
-          <div id="blogs">
+          <div id="news">
             <SectionMagazine1
               className="py-16 lg:py-14"
               posts={MAGAZINE1_POSTS}
