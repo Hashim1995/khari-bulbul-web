@@ -69,9 +69,9 @@ const PostMeta2: FC<PostMeta2Props> = ({
           )} */}
         </div>
         <div className="text-xs mt-[6px]">
-          <span className="text-neutral-700 dark:text-neutral-300">
+          {/* <span className="text-neutral-700 dark:text-neutral-300">
             {post?.createdDate}
-          </span>
+          </span> */}
           {/* <span className="mx-2 font-semibold">·</span> */}
           {/* <span className="text-neutral-700 dark:text-neutral-300">
             {readingTime} min read
